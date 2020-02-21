@@ -143,5 +143,5 @@ export delimited using "team_series.csv", replace
 use `main', clear
 collapse (sum) pts fgm fga pm3 pa3 oreb dreb reb ast stl to wins series_win, by(team)
 gen fg_pct = fgm/fga
-gen fg3_pct = fgm/fga
+gen fg3_pct = pm3/pa3
 export delimited using "team_total.csv", replace
