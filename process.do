@@ -17,7 +17,7 @@ forv g = 1/`maxgame' {
 		ren v13 pa3
 		ren ftm mj_bonus
 		ren v28 plus_minus
-		drop if min == "-"
+		drop if g == "-"
 		drop if mi(v1)
 		replace name = trim(name)
 		keep name pts fgm fga pm? pa? mj_bonus oreb dreb reb ast stl dfl blk to plus_minus
@@ -31,6 +31,7 @@ forv g = 1/`maxgame' {
 		}
 	}
 }
+
 order series team name
 sort series team name
 foreach v of varlist pts-plus_minus {
