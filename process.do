@@ -2,7 +2,7 @@ cd "C:\Users\dongh\Dropbox\Non-Research_Projects\2020 KGSA League"
 //cd "C:\Users\mitadm\Dropbox (Personal)\Non-Research_Projects\2020 KGSA League"	
 
 // Parameters
-local maxgame = 5
+local maxgame = 6
 
 // Load and merge data
 tempfile main
@@ -85,6 +85,14 @@ local roster_s5_g8 "동현 덕용 상수 토마스리 병주 제프 재성 승�
 local roster_s5_g9 "동현 민주 원유 현호 동일 재성 신예찬 승호 상백 정성우"
 local win_s5 "JJ DK JJ DK DK DK JJ JJ DK"
 local games_s5 = 9
+local roster_s6_g1 "동현 덕용 민주 상수 토마스리 제임스 태훈 정성우 상백 승호"
+local roster_s6_g2 "덕용 민주 토마스리 종우 현호 제프 민재 제임스 태훈 정성우"
+local roster_s6_g3 "동현 상수 토마스리 종우 현호 제프 제임스 정성우 상백 승호"
+local roster_s6_g4 "동현 덕용 민주 상수 현호 제프 민재 태훈 상백 승호"
+local roster_s6_g5 "동현 민주 토마스리 종우 현호 제프 제임스 태훈 정성우 승호"
+local roster_s6_g6 "덕용 민주 상수 토마스리 종우 제프 민재 태훈 상백 승호"
+local win_s6 "JJ JJ JJ DK JJ JJ"
+local games_s6 = 6
 
 // Games and wins
 gen games = 0
