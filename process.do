@@ -97,7 +97,9 @@ local games_s6 = 6
 // Games and wins
 gen games = 0
 gen wins = 0
+gen totgames = .
 forv s = 1/`maxgame' {
+	replace totgames = `games_s`s'' if series == `s'
 	forv g = 1/`games_s`s'' {
 		local winner: word `g' of `win_s`s''
 		dis "`s'`g'"
@@ -108,11 +110,23 @@ forv s = 1/`maxgame' {
 		}
 	}
 }
+
+drop if games == 0
+
+// advanced stats
+gen efg = (pm2+pm3*1.5+mj_bonus*0.5)/fga
+gen gamescore = pts+0.4*fgm+0.7*oreb+0.3*dreb+stl+0.7*ast+0.7*blk-0.7*fga-to
+
+// usg rate
+bys series team: egen tfga = total(fga)
+bys series team: egen tto = total(to)
+gen usg = (fga+to)/((tfga+tto)*games/totgames)
+
 save `main', replace
 export delimited using "individual_per_series.csv", replace
 
 // total and ratio stats
-collapse (sum) pts-wins, by(team name)
+collapse (sum) pts-wins tfga tto totgames, by(team name)
 gen fg_pct = fgm/fga
 gen fg2_pct = pm2/pa2
 gen fg3_pct = pm3/pa3
@@ -121,6 +135,7 @@ gen win_pct = wins/games*100
 // advanced stats
 gen efg = (pm2+pm3*1.5+mj_bonus*0.5)/fga
 gen gamescore = pts+0.4*fgm+0.7*oreb+0.3*dreb+stl+0.7*ast+0.7*blk-0.7*fga-to
+gen usg = (fga+to)/((tfga+tto)*games/totgames)
 
 // per-game stats
 foreach v of varlist pts-plus_minus gamescore {
