@@ -2,7 +2,7 @@ cd "C:\Users\dongh\Dropbox\Non-Research_Projects\2020 KGSA League"
 //cd "C:\Users\mitadm\Dropbox (Personal)\Non-Research_Projects\2020 KGSA League"	
 
 // Parameters
-local maxgame = 6
+local maxgame = 7
 
 // Load and merge data
 tempfile main
@@ -93,6 +93,15 @@ local roster_s6_g5 "동현 민주 토마스리 종우 현호 제프 제임스 �
 local roster_s6_g6 "덕용 민주 상수 토마스리 종우 제프 민재 태훈 상백 승호"
 local win_s6 "JJ JJ JJ DK JJ JJ"
 local games_s6 = 6
+local roster_s7_g1 "동희 덕용 민주 토마스리 현호 제임스 태훈 신예찬 정성우 상백"
+local roster_s7_g2 "민주 상수 원유 종우 현호 제프 제임스 태훈 신예찬 정성우"
+local roster_s7_g3 "동희 덕용 민주 토마스리 종우 제프 제임스 태훈 정성우 상백 신예찬"
+local roster_s7_g4 "동희 덕용 상수 원유 현호 제프 제임스 신예찬 정성우 상백"
+local roster_s7_g5 "민주 상수 토마스리 종우 현호 제프 제임스 태훈 정성우 상백"
+local roster_s7_g6 "동희 덕용 원유 종우 현호 제프 제임스 태훈 신예찬 정성우"
+local roster_s7_g7 "동희 민주 상수 토마스리 현호 제임스 태훈 신예찬 정성우 상백"
+local win_s7 "DK DK JJ JJ JJ DK DK"
+local games_s7 = 7
 
 // Games and wins
 gen games = 0
@@ -103,7 +112,7 @@ forv s = 1/`maxgame' {
 	forv g = 1/`games_s`s'' {
 		local winner: word `g' of `win_s`s''
 		dis "`s'`g'"
-		if "roster_s`s'_g`g'" != "roster_s5_g5" assert wordcount("`roster_s`s'_g`g''") == 10
+		if !inlist("roster_s`s'_g`g'","roster_s5_g5","roster_s7_g3") assert wordcount("`roster_s`s'_g`g''") == 10
 		foreach player in `roster_s`s'_g`g'' {
 			replace games = games+1 if series == `s' & name == "`player'"
 			replace wins = wins+1 if series == `s' & name == "`player'" & team == "`winner'"
