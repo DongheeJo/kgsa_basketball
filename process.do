@@ -135,7 +135,7 @@ save `main', replace
 export delimited using "individual_per_series.csv", replace
 
 // total and ratio stats
-collapse (sum) pts-wins tfga tto totgames, by(team name)
+collapse (sum) pts-wins tfga tto totgames, by(name)
 gen fg_pct = fgm/fga
 gen fg2_pct = pm2/pa2
 gen fg3_pct = pm3/pa3
